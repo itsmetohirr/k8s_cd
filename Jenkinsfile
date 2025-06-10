@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'bitnami/kubectl:1.33.1'
-            args "-v /root/.kube:/root/.kube --entrypoint=''"
+            args "-v /root/.kube:/root/.kube --entrypoint='' --network host"
         }
     }
 
