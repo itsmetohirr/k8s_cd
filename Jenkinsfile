@@ -9,13 +9,7 @@ pipeline {
     stages{
         stage("check"){
             steps{
-                sh 'echo Hello word'
-            }
-        }
-
-        stage('Deploy to k8s'){
-            steps{
-                sh 'kubectl cluster-info'
+                sh 'ls ~/.kube'
             }
         }
     }
