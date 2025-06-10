@@ -7,6 +7,12 @@ pipeline {
     }
 
     stages{
+        stage('check') {
+            steps {
+                sh 'kubectl'
+            }
+        }
+
         stage('Deploy to Kubernetes') {
             steps {
                 withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
@@ -23,4 +29,5 @@ pipeline {
                 }
             }
     }
+}
 }
