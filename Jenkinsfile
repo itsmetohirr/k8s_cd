@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'bitnami/kubectl:latest'
-            args '-v $HOME/.kube:/root/.kube' // mounting kubeconfig
+            args '--entrypoint="" -v $HOME/.kube:/root/.kube'
         }
     } 
 
