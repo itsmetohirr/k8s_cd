@@ -1,19 +1,10 @@
 pipeline {
-    agent {
-        docker {
-            image 'bitnami/kubectl:latest'
-            args '--entrypoint="" -v $HOME/.kube:/root/.kube'
-        }
-    } 
-
-    environment {
-        KUBECONFIG = '/root/.kube/config' // container path
-    }
+    agent any
 
     stages {
-        stage('Deploy to Kubernetes') {
+        stage('Deploy') {
             steps {
-                script {
+                withKubeConfig(credentialsId: 'kubeconfig') {
                     sh 'kubectl apply -f webapp.yaml'
                 }
             }
