@@ -1,12 +1,15 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'bitnami/kubectl:1.33.1'
+            args '-v /root/.kube:/root/.kube'
+        }
+    }
 
-    stages {
-        stage('Deploy') {
-            steps {
-                withKubeConfig(credentialsId: 'kubeconfig') {
-                    sh 'kubectl apply -f webapp.yaml'
-                }
+    stages{
+        stage("check"){
+            steps{
+                sh 'echo Hello word'
             }
         }
     }
